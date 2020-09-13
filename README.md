@@ -2,6 +2,7 @@
 
 A custom repository for the NWU03 Ridgeback. Equipped with a VLP16, Bumblebee, and Sawyer manipulator
 
+
 # Calibrate the Bumblebee Camera
 ```
 rosrun camera_calibration cameracalibrator.py --approximate 0.1 --size 8x6 --square 0.025 right:=/camera/right/image_raw left:=/camera/left/image_raw right_camera:=/camera/right left_camera:=/camera/left
