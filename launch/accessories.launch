@@ -25,16 +25,4 @@ in the URDF. See ridgeback_description/urdf/accessories.urdf.xacro.
       <remap from="scan" to="rear/scan" />
     </node>
   </group>
-
-  <!-- <group if="$(optenv RIDGEBACK_MICROSTRAIN_IMU 0)">
-    <node pkg="microstrain_3dmgx2_imu" type="imu_node" name="microstrain_imu">
-      <param name="time_offset" value="-0.040" />
-      <param name="port" value="$(optenv RIDGEBACK_MICROSTRAIN_IMU_PORT /dev/microstrain)" />
-      <param name="frame_id" value="$(optenv RIDGEBACK_MICROSTRAIN_IMU_LINK upgraded)_imu_link" />
-      <param name="autocalibrate" value="true" />
-      <param name="angular_velocity_stdev" value="0.00017" />
-      <param name="max_drift_rate" value="0.001" />
-      <remap from="imu" to="$(optenv RIDGEBACK_MICROSTRAIN_IMU_TOPIC upgraded)_imu" />
-    </node>
-  </group> -->
 </launch>
