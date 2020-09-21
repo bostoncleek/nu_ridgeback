@@ -1,28 +1,26 @@
 <launch>
 
-  <!-- <param name="robot_description"
+  <param name="robot_description"
      command="$(find xacro)/xacro $(find sawback_description)/urdf/sawback.urdf.xacro
            gazebo:=false electric_gripper:=true
            pedestal:=false static:=false"/>
 
- <node pkg="tf2_ros" type="static_transform_publisher"
-    name="ridgeback_to_sawyer" args="0 0 0.0099 0 0 0 1 mount_link base"/> -->
+  <node pkg="tf2_ros" type="static_transform_publisher"
+    name="ridgeback_to_sawyer" args="0 0 0.0099 0 0 0 1 mount_link base"/>
+
+  <!-- <node name="$(anon rviz)" pkg="rviz" type="rviz" args="-d $(find nu_ridgeback)/config/nu_ridgeback.rviz"/> -->
 
   <group ns="ridgeback">
     <!-- This was an executable in ros.d -->
-    <!-- <include file="$(find nwu03_ridgeback)/launch/accessories.launch" /> -->
+    <!-- <include file="$(find nu_ridgeback)/launch/accessories.launch" /> -->
 
     <!-- <include file="$(find ridgeback_description)/launch/description.launch" /> -->
 
     <param name="robot_description"
-       command="$(find xacro)/xacro $(find sawback_description)/urdf/sawback.urdf.xacro
-             gazebo:=false electric_gripper:=true
-             pedestal:=false static:=false"/>
+       command="$(find xacro)/xacro '$(find sawback_description)/urdf/nu_ridgeback.urdf.xacro'"/>
 
+    <!-- In the ridgeback namespace this robot_state_publisher will not override sawyer's robot_state_publisher -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-
-    <node name="rviz" pkg="rviz" type="rviz" required="true"
-                   args="-d $(find sawback_description)/config/testmodel.rviz"/>
 
     <node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" />
 
@@ -35,7 +33,7 @@
       </rosparam>
     </node>
 
-    <!-- front rocker axle joint is always published on /joint_states it is remapped here -->
+    <!-- Front rocker axle joint is always published on /joint_states and is remapped here -->
     <node pkg="ridgeback_base" type="ridgeback_node" name="ridgeback_node" output="screen">
       <remap from="/joint_states" to="/ridgeback/joint_states" />
     </node>

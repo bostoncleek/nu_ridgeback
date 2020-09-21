@@ -33,7 +33,7 @@
  <link name="velodyne_mesh">
      <visual>
       <geometry>
-        <mesh filename="package://nwu03_ridgeback/meshes/vlp16_assy.stl"/>
+        <mesh filename="package://nu_ridgeback/meshes/vlp16_assy.stl"/>
       </geometry>
       <material name="light_grey">
         <color rgba="0.4 0.4 0.4 1"/>
@@ -41,7 +41,7 @@
      </visual>
     <collision>
       <geometry>
-        <mesh filename="package://nwu03_ridgeback/meshes/vlp16_assy.stl"/>
+        <mesh filename="package://nu_ridgeback/meshes/vlp16_assy.stl"/>
       </geometry>
     </collision>
  </link>
@@ -67,7 +67,7 @@
  <link name="bb2_mesh">
      <visual>
       <geometry>
-        <mesh filename="package://nwu03_ridgeback/meshes/bb2_stereo_cam.dae"/>
+        <mesh filename="package://nu_ridgeback/meshes/bb2_stereo_cam.dae"/>
       </geometry>
     </visual>
   </link>
