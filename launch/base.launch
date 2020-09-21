@@ -1,30 +1,54 @@
 <launch>
-  <!-- This was an executable in ros.d -->
-  <!-- <include file="$(find nwu03_ridgeback)/launch/accessories.launch" /> -->
 
-  <include file="$(find ridgeback_description)/launch/description.launch" />
+  <!-- <param name="robot_description"
+     command="$(find xacro)/xacro $(find sawback_description)/urdf/sawback.urdf.xacro
+           gazebo:=false electric_gripper:=true
+           pedestal:=false static:=false"/>
 
-  <node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" />
+ <node pkg="tf2_ros" type="static_transform_publisher"
+    name="ridgeback_to_sawyer" args="0 0 0.0099 0 0 0 1 mount_link base"/> -->
 
-  <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter">
-    <rosparam>
-      gain: 0.1
-      zeta: 0.001
-      publish_tf: false
-      use_magnetic_field_msg: true
-    </rosparam>
-  </node>
+  <group ns="ridgeback">
+    <!-- This was an executable in ros.d -->
+    <!-- <include file="$(find nwu03_ridgeback)/launch/accessories.launch" /> -->
 
-  <node pkg="ridgeback_base" type="ridgeback_node" name="ridgeback_node" output="screen"/>
+    <!-- <include file="$(find ridgeback_description)/launch/description.launch" /> -->
 
-  <!-- Mecanum controller and basic localization -->
-  <include file="$(find ridgeback_control)/launch/control.launch" />
+    <param name="robot_description"
+       command="$(find xacro)/xacro $(find sawback_description)/urdf/sawback.urdf.xacro
+             gazebo:=false electric_gripper:=true
+             pedestal:=false static:=false"/>
 
-  <!-- Teleoperation via joystick and rviz interactive markers -->
-  <include file="$(find ridgeback_control)/launch/teleop.launch" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
-  <!-- Diagnostic Aggregator for robot monitor usage -->
-  <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
-    <rosparam command="load" file="$(find ridgeback_base)/config/diagnostic_analyzers.yaml" />
-  </node>
+    <node name="rviz" pkg="rviz" type="rviz" required="true"
+                   args="-d $(find sawback_description)/config/testmodel.rviz"/>
+
+    <node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" />
+
+    <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter">
+      <rosparam>
+        gain: 0.1
+        zeta: 0.001
+        publish_tf: false
+        use_magnetic_field_msg: true
+      </rosparam>
+    </node>
+
+    <!-- front rocker axle joint is always published on /joint_states it is remapped here -->
+    <node pkg="ridgeback_base" type="ridgeback_node" name="ridgeback_node" output="screen">
+      <remap from="/joint_states" to="/ridgeback/joint_states" />
+    </node>
+
+    <!-- Mecanum controller and basic localization -->
+    <include file="$(find ridgeback_control)/launch/control.launch" />
+
+    <!-- Teleoperation via joystick and rviz interactive markers -->
+    <include file="$(find ridgeback_control)/launch/teleop.launch" />
+
+    <!-- Diagnostic Aggregator for robot monitor usage -->
+    <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
+      <rosparam command="load" file="$(find ridgeback_base)/config/diagnostic_analyzers.yaml" />
+    </node>
+  </group>
 </launch>
