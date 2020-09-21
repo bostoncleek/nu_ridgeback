@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>nwu03_ridgeback</name>
+  <name>nu_ridgeback</name>
   <version>0.0.1</version>
   <description>URDF robot description for NWU03 Ridgeback</description>
 
