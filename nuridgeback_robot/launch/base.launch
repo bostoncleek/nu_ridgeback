@@ -1,23 +1,26 @@
 <launch>
-
-  <param name="robot_description"
+  <!-- <param name="robot_description"
      command="$(find xacro)/xacro $(find sawback_description)/urdf/sawback.urdf.xacro
            gazebo:=false electric_gripper:=true
            pedestal:=false static:=false"/>
 
   <node pkg="tf2_ros" type="static_transform_publisher"
-    name="ridgeback_to_sawyer" args="0 0 0.0099 0 0 0 1 mount_link base"/>
+    name="ridgeback_to_sawyer" args="0 0 0.0099 0 0 0 1 mount_link base"/> -->
 
   <!-- <node name="$(anon rviz)" pkg="rviz" type="rviz" args="-d $(find nu_ridgeback)/config/nu_ridgeback.rviz"/> -->
-
   <group ns="ridgeback">
     <!-- This was an executable in ros.d -->
     <!-- <include file="$(find nu_ridgeback)/launch/accessories.launch" /> -->
 
-    <!-- <include file="$(find ridgeback_description)/launch/description.launch" /> -->
+    <!-- Mecanum controller -->
+    <rosparam command="load" file="$(find ridgeback_control)/config/control.yaml" />
+
+    <!-- PS4 joystick -->
+    <rosparam command="load" file="$(find ridgeback_control)/config/teleop_ps4.yaml" />
+
 
     <param name="robot_description"
-       command="$(find xacro)/xacro '$(find sawback_description)/urdf/nu_ridgeback.urdf.xacro'"/>
+       command="$(find xacro)/xacro '$(find nuridgeback_description)/urdf/nuridgeback.urdf.xacro'"/>
 
     <!-- In the ridgeback namespace this robot_state_publisher will not override sawyer's robot_state_publisher -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
@@ -38,11 +41,16 @@
       <remap from="/joint_states" to="/ridgeback/joint_states" />
     </node>
 
-    <!-- Mecanum controller and basic localization -->
-    <include file="$(find ridgeback_control)/launch/control.launch" />
+    <!-- localization -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+      <remap from="/ridgeback/odometry/filtered" to="/odometry/filtered" />
+      <remap from="/imu/data" to="/ridgeback/imu/data" />
+    </node>
 
-    <!-- Teleoperation via joystick and rviz interactive markers -->
-    <include file="$(find ridgeback_control)/launch/teleop.launch" />
+    <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
+          args="/cmd_vel ridgeback_velocity_controller/cmd_vel" />
+
+    <!-- Teleoperation via joystick-->
 
     <!-- Diagnostic Aggregator for robot monitor usage -->
     <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
