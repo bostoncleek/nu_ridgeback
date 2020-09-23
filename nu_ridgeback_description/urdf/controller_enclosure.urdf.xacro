@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Add a box to represent the controller -->
+  <link name="controller_enclosure">
+    <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.209 0.352 0.537" />
+      </geometry>
+      <material name="grey">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+    <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.209 0.352 0.537"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_controller_enclosure" type="fixed">
+    <parent link="mid_mount"/>
+    <child link="controller_enclosure"/>
+    <origin xyz="-0.285 0 0.268"/>
+  </joint>
+</robot>
