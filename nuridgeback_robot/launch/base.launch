@@ -15,10 +15,6 @@
     <!-- Mecanum controller -->
     <rosparam command="load" file="$(find ridgeback_control)/config/control.yaml" />
 
-    <!-- PS4 joystick -->
-    <rosparam command="load" file="$(find ridgeback_control)/config/teleop_ps4.yaml" />
-
-
     <param name="robot_description"
        command="$(find xacro)/xacro '$(find nuridgeback_description)/urdf/nuridgeback.urdf.xacro'"/>
 
@@ -51,6 +47,15 @@
           args="/cmd_vel ridgeback_velocity_controller/cmd_vel" />
 
     <!-- Teleoperation via joystick-->
+    <group ns="bluetooth_teleop"/>
+      <rosparam command="load" file="$(find ridgeback_control)/config/teleop_ps4.yaml" />
+      
+      <node pkg="joy" type="joy_node" name="joy_node" />
+
+      <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
+        <remap from="cmd_vel" to="/cmd_vel" />
+      </node>
+    </group>
 
     <!-- Diagnostic Aggregator for robot monitor usage -->
     <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
