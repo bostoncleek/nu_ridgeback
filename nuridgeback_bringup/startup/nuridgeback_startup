@@ -1,0 +1,12 @@
+#!/bin/bash
+# TODO: sawyer connection
+# TODO: fix absolute paths
+
+export ROS_MASTER_URI='http://localhost:11311'
+export ROS_HOSTNAME='localhost'
+unset ROS_IP
+
+
+source /opt/ros/noetic/setup.bash
+source /home/administrator/sawback_ws/devel/setup.bash
+roslaunch /home/administrator/sawback_ws/src/nu_ridgeback/nuridgeback_robot/launch/base.launch

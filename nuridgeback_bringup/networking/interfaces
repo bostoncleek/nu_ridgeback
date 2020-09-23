@@ -1,0 +1,10 @@
+# Setup bridge network on ridgeback
+auto lo br0
+iface lo inet loopback
+
+# Bridge together physical ports on machine, assign standard Clearpath Robot IP.
+iface br0 inet static
+  bridge_ports regex (eth.*)|(en.*)
+  address 192.168.131.1
+  netmask 255.255.255.0
+  bridge_maxwait 0
