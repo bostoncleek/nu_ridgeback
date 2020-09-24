@@ -3,7 +3,7 @@
   <!-- declare arguments with default values -->
   <arg name="calibration" default="$(find velodyne_pointcloud)/params/VLP16db.yaml"/>
   <arg name="device_ip" default="192.168.131.22" />
-  <arg name="frame_id" default="velodyne" />
+  <arg name="frame_id" default="velodyne_scan" />
   <arg name="manager" default="$(arg frame_id)_nodelet_manager" />
   <arg name="max_range" default="130.0" />
   <arg name="min_range" default="0.4" />
