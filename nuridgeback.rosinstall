@@ -1,0 +1,36 @@
+- git:
+    local-name: ridgeback
+    uri: https://github.com/bostoncleek/ridgeback.git
+    version: noetic-devel
+- git:
+    local-name: ridgeback_simulator
+    uri: https://github.com/bostoncleek/ridgeback_simulator.git
+    version: noetic-devel
+- git:
+    local-name: ridgeback_desktop
+    uri: https://github.com/bostoncleek/ridgeback_desktop.git
+    version: noetic-devel
+- git:
+    local-name: ridgeback_robot
+    uri: https://github.com/ridgeback/ridgeback_robot.git
+    version: kinetic-devel
+- git:
+    local-name: puma_motor_driver
+    uri: https://github.com/clearpathrobotics/puma_motor_driver.git
+    version: master
+- git:
+    local-name: pointgrey_camera_driver
+    uri: https://github.com/ros-drivers/pointgrey_camera_driver.git
+    version: noetic-devel
+- git:
+    local-name: microstrain_3dmgx2_imu
+    uri: https://github.com/ros-drivers/microstrain_3dmgx2_imu.git
+    version: indigo-devel
+- git:
+    local-name: robot_upstart
+    uri: https://github.com/Crowdedlight/robot_upstart.git
+    version: noetic-devel
+- git:
+    local-name: serial
+    uri: https://github.com/wjwwood/serial.git
+    version: master
