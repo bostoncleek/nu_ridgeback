@@ -15,6 +15,10 @@
     uri: https://github.com/ridgeback/ridgeback_robot.git
     version: kinetic-devel
 - git:
+    local-name: urg_node
+    uri: https://github.com/bostoncleek/urg_node.git
+    version: kinetic-devel
+- git:
     local-name: puma_motor_driver
     uri: https://github.com/clearpathrobotics/puma_motor_driver.git
     version: master
