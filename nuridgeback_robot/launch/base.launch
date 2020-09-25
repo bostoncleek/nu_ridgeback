@@ -1,6 +1,5 @@
 <launch>
   <group ns="ridgeback">
-    <!-- This was an executable in ros.d -->
     <!-- <include file="$(find nu_ridgeback)/launch/accessories.launch" /> -->
 
     <param name="robot_description"
