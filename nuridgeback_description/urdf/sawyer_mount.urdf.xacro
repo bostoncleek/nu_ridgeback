@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- mount sawyer -->
+  <link name="mount_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.002789"  ixy="0"  ixz="0" iyy="0.002789" iyz="0" izz="0.00551" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.105" length="0.0198"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.105" length="0.0198"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="mount_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.19 0.0 0.280"/>
+    <parent link="base_link"/>
+    <child link="mount_link"/>
+  </joint>  
+</robot>
