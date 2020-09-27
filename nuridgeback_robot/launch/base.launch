@@ -1,6 +1,6 @@
 <launch>
   <group ns="ridgeback">
-    <!-- <include file="$(find nu_ridgeback)/launch/accessories.launch" /> -->
+    <include file="$(find nuridgeback_robot)/launch/accessories.launch" />
 
     <param name="robot_description"
        command="$(find xacro)/xacro '$(find nuridgeback_description)/urdf/nuridgeback.urdf.xacro'"/>

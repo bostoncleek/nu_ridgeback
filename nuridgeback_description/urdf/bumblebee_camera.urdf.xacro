@@ -24,6 +24,7 @@
    <origin xyz="0.001 0 0.07" rpy="0 0 ${-1.5708}" />
  </joint>
 
+ <!-- <link name="bb2_optical_link" /> -->
  <link name="bb2_optical_link" />
 
  <joint name="bb2_origin_to_bb2_camera" type="fixed">

@@ -2,6 +2,7 @@ image_width: 640
 image_height: 480
 # camera_name: camera/right
 camera_name: 19363403
+# camera_name: 00b09d010127764b_right
 camera_matrix:
   rows: 3
   cols: 3

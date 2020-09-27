@@ -1,0 +1,40 @@
+<launch>
+  <!-- <node name="throttle_odom" pkg="topic_tools" type="throttle"
+        args="messages /odometry/filtered 15.0 /odometry/filtered_throttle"/> -->
+
+  <arg name="cfg"                     default="$(find nuridgeback_robot)/config/rtabmap_params.ini" />
+  <!-- <arg name="cfg"                     default="" /> -->
+  <arg name="queue_size"              default="10"/>
+
+  <include file="$(find nuridgeback_robot)/launch/stereo_mapping.launch">
+    <arg name="cfg"                     value="$(arg cfg)" />
+    <arg name="rtabmapviz"              value="false" />
+    <arg name="rviz"                    value="false" />
+
+    <arg name="localization"            value="false"/>
+
+    <arg name="frame_id"                value="base_link"/>
+    <arg name="rtabmap_args"            value="--delete_db_on_start"/>
+    <arg name="approx_sync"             value="false"/>
+    <arg name="queue_size"              value="$(arg queue_size)"/>
+
+    <arg name="stereo_namespace"        value="/ridgeback/bumblebee"/>
+    <arg name="compressed"              value="false"/>
+
+    <arg name="subscribe_scan"          value="true"/>
+    <arg name="scan_topic"              value="/ridgeback/front/scan"/>
+
+    <arg name="subscribe_scan_cloud"    value="true"/>
+    <arg name="scan_cloud_topic"        value="/ridgeback/velodyne_points"/>
+
+    <arg name="visual_odometry"         value="true"/>
+    <!-- <arg name="odom_topic"              value="/odometry/filtered"/> -->
+    <!-- <arg name="odom_topic"              value="/ridgeback/ridgeback_velocity_controller/odom"/> -->
+    <!-- If set, TF is used to get odometry instead of the topic -->
+    <arg name="odom_frame_id"           value="odom"/>
+  </include>
+
+  <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
+          args="-d $(find nuridgeback_robot)/config/slam.rviz" output="screen">
+  </node>
+</launch>

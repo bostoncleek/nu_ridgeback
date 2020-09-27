@@ -1,10 +1,10 @@
 <launch>
   <!-- <group ns="ridgeback"> -->
   <!-- Bumblebee 2 Depth Camera -->
-  <!-- <include file="$(find nuridgeback_robot)/launch/bumblebee.launch" /> -->
+  <include file="$(find nuridgeback_robot)/launch/bumblebee.launch" />
 
   <!-- Velodyne 16 Lidar -->
-  <!-- <include file="$(find nuridgeback_robot)/launch/VLP16_points.launch" /> -->
+  <include file="$(find nuridgeback_robot)/launch/VLP16_points.launch" />
 
   <!-- Primary Hokuyo UST-10LX LIDAR, base is front-facing but support for addtional rear. -->
   <node pkg="urg_node" name="urg_front" type="urg_node" output="screen">
