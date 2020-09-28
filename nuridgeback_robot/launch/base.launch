@@ -11,6 +11,7 @@
     <node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info"/>
 
     <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter">
+      <rosparam file="$(find nuridgeback_robot)/config/imu/mag_config.yaml" />
       <rosparam>
         gain: 0.1
         zeta: 0.001

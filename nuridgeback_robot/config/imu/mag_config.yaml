@@ -1,0 +1,5 @@
+# Generated from /tmp/calibrate_compass.RYKC/imu_record.bag on 2020-09-28.
+use_mag: true
+mag_bias_x: -0.000025411
+mag_bias_y: -0.000014436
+mag_bias_z: 0.000004734
