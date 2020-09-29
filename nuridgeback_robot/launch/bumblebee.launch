@@ -17,16 +17,10 @@
       <param name="format7_color_coding" value="raw16" />
       <param name="serial" value="$(arg bumblebee_serial)" />
 
-      <!-- Use the camera_calibration package to create these files -->
-      <!-- <param name="camera_info_url" if="$(arg calibrated)"
-             value="file://$(env HOME)/.ros/camera_info/$(arg bumblebee_serial).yaml" /> -->
-      <!-- <param name="second_info_url" if="$(arg calibrated)"
-             value="file://$(env HOME)/.ros/camera_info/$(arg bumblebee_serial)_right.yaml" /> -->
-
-       <param name="camera_info_url" if="$(arg calibrated)"
-              value="file://$(find nuridgeback_robot)/config/bumblebee/left.yaml" />
-       <param name="second_info_url" if="$(arg calibrated)"
-              value="file://$(find nuridgeback_robot)/config/bumblebee/right.yaml" />
+      <param name="camera_info_url" if="$(arg calibrated)"
+            value="file://$(find nuridgeback_robot)/config/bumblebee/left.yaml" />
+      <param name="second_info_url" if="$(arg calibrated)"
+            value="file://$(find nuridgeback_robot)/config/bumblebee/right.yaml" />
     </node>
 
     <!-- TODO: should be able to combine nodelets into one look at image_proc doc -->
@@ -44,17 +38,11 @@
       <remap from="image_color" to="right/image_color"/>
     </node> -->
 
+    <!-- Used for stereo slam -->
     <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc">
       <param name="approximate_sync" value="false"/>
-      <param name="queue_size" value="100"/>
       <param name="disparity_range" value="128"/>
     </node>
-
-    <!-- <node pkg="nodelet" type="nodelet" name="stereo_sync" args="standalone rtabmap_ros/stereo_sync">
-      <param name="approx_sync" value="true"/>
-    </node> -->
-
-
 
     <!-- <node pkg="nodelet" type="nodelet" name="image_proc_rectify_left"
         args="load image_proc/rectify bumblebee_nodelet_manager">
