@@ -1,0 +1,123 @@
+<launch>
+    <arg name="rtabmapviz"    default="false"/>
+
+    <!-- Assuming IMU fixed to lidar with /velodyne -> /imu_link TF -->
+    <!-- <arg name="use_imu"       default="false"/>
+    <arg name="imu_topic"     default="/ridgeback/imu/data"/> -->
+
+    <!-- If we launch the velodyne with "rpm:=1200" argument -->
+    <arg name="scan_20_hz"    default="false"/>
+
+    <!-- <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch">
+       <arg     if="$(arg scan_20_hz)" name="rpm" value="1200"/>
+       <arg unless="$(arg scan_20_hz)" name="rpm" value="600"/>
+    </include> -->
+
+    <!-- IMU orientation estimation and publish tf accordingly to os1_sensor frame -->
+    <!-- <node if="$(arg use_imu)" pkg="rtabmap_ros" type="imu_to_tf" name="imu_to_tf">
+      <remap from="/ridgeback/imu/data" to="$(arg imu_topic)"/>
+      <param name="fixed_frame_id" value="$(arg frame_id)_stabilized"/>
+      <param name="base_frame_id" value="$(arg frame_id)"/>
+    </node> -->
+
+
+    <group ns="rtabmap">
+      <node pkg="rtabmap_ros" type="icp_odometry" name="icp_odometry" output="screen">
+        <remap from="scan_cloud"                        to="/ridgeback/velodyne_points"/>
+
+        <!-- <remap from="imu" to="/ridgeback/imu/data"/>
+        <param name="guess_frame_id"   type="string" value="imu_link"/>
+        <param name="wait_imu_to_init" type="bool" value="true"/> -->
+
+        <param name="frame_id"                          value="base_link"/>
+        <param name="odom_frame_id"                     value="odom"/>
+
+        <param     if="$(arg scan_20_hz)" name="expected_update_rate"  value="25"/>
+        <param unless="$(arg scan_20_hz)" name="expected_update_rate"  value="15"/>
+
+        <!-- ICP parameters -->
+        <param name="Icp/PointToPlane"                  value="true"/>
+        <param name="Icp/Iterations"                    value="10"/>
+        <param name="Icp/VoxelSize"                     value="0.2"/>
+        <!-- cannot be increased with ring-like lidar -->
+        <param name="Icp/DownsamplingStep"              value="1"/>
+        <param name="Icp/Epsilon"                       value="0.001"/>
+        <param name="Icp/PointToPlaneK"                 value="20"/>
+        <param name="Icp/PointToPlaneRadius"            value="0"/>
+        <param name="Icp/MaxTranslation"                value="2"/>
+        <param name="Icp/MaxCorrespondenceDistance"     value="1"/>
+        <param name="Icp/PM"                            value="true"/>
+        <param name="Icp/PMOutlierRatio"                value="0.7"/>
+        <param name="Icp/CorrespondenceRatio"           value="0.01"/>
+
+        <!-- Odom parameters -->
+        <param name="Odom/ScanKeyFrameThr"              value="0.9"/>
+        <param name="Odom/Strategy"                     value="0"/>
+        <param name="OdomF2M/ScanSubtractRadius"        value="0.2"/>
+        <param name="OdomF2M/ScanMaxSize"               value="15000"/>
+      </node>
+
+      <node pkg="rtabmap_ros" type="rtabmap" name="rtabmap" output="screen" args="--delete_db_on_start">
+        <param name="frame_id"                          value="base_link"/>
+        <param name="map_frame_id"                      value="map"/>
+        <param name="odom_frame_id"                     value="odom"/>
+
+        <param name="subscribe_stereo"                  value="false"/>
+        <param name="subscribe_depth"                   value="false"/>
+        <param name="subscribe_rgbd"                    value="false"/>
+        <param name="subscribe_rgb"                     value="false"/>
+        <param name="subscribe_scan_cloud"              value="true"/>
+        <param name="approx_sync"                       value="false"/>
+
+        <!-- <remap from="scan_cloud" to="assembled_cloud"/> -->
+        <remap from="scan_cloud"                        to="/ridgeback/velodyne_points"/>
+
+
+        <!-- RTAB-Map's parameters -->
+        <param name="Rtabmap/DetectionRate"             value="1"/>
+        <param name="RGBD/NeighborLinkRefining"         value="false"/>
+        <param name="RGBD/ProximityBySpace"             value="true"/>
+        <param name="RGBD/ProximityMaxGraphDepth"       value="0"/>
+        <param name="RGBD/ProximityPathMaxNeighbors"    value="1"/>
+        <param name="RGBD/AngularUpdate"                value="0.05"/>
+        <param name="RGBD/LinearUpdate"                 value="0.05"/>
+        <param name="RGBD/CreateOccupancyGrid"          value="true"/>
+        <param name="Mem/NotLinkedNodesKept"            value="false"/>
+        <param name="Mem/STMSize"                       value="30"/>
+        <!-- param name="Mem/LaserScanVoxelSize"     value="0.1"/ -->
+        <!-- param name="Mem/LaserScanNormalK"       value="10"/ -->
+        <!-- param name="Mem/LaserScanRadius"        value="0"/ -->
+
+        <param name="Reg/Strategy"                      value="1"/>
+        <param name="Grid/CellSize"                     value="0.1"/>
+        <param name="Grid/RangeMax"                     value="20"/>
+        <param name="Grid/ClusterRadius"                value="1"/>
+        <param name="Grid/GroundIsObstacle"             value="true"/>
+        <param name="Grid/3D"                           value="true"/>
+        <param name="Grid/FromDepth"                    value="false"/>
+        <param name="Grid/RangeMax"                     value="5.0"/>
+        <param name="Grid/RayTracing"                   value="true"/>
+        <!-- remove rings from velodyne on the ground -->
+        <param name="Grid/MinGroundHeight"              value="0.02"/>
+
+        <!-- ICP parameters -->
+        <param name="Icp/VoxelSize"                    value="0.2"/>
+        <param name="Icp/PointToPlaneK"                value="20"/>
+        <param name="Icp/PointToPlaneRadius"           value="0"/>
+        <param name="Icp/PointToPlane"                 value="true"/>
+        <param name="Icp/Iterations"                   value="10"/>
+        <param name="Icp/Epsilon"                      value="0.001"/>
+        <param name="Icp/MaxTranslation"               value="3"/>
+        <param name="Icp/MaxCorrespondenceDistance"    value="1"/>
+        <param name="Icp/PM"                           value="true"/>
+        <param name="Icp/PMOutlierRatio"               value="0.7"/>
+        <param name="Icp/CorrespondenceRatio"          value="0.4"/>
+      </node>
+
+  </group>
+
+  <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
+          args="-d $(find nuridgeback_robot)/config/slam.rviz" output="screen">
+  </node>
+
+</launch>
