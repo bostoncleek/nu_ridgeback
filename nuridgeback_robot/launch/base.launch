@@ -2,6 +2,18 @@
   <group ns="ridgeback">
     <include file="$(find nuridgeback_robot)/launch/accessories.launch" />
 
+    <!-- Relay both hokuyo scans to same topic -->
+    <node pkg="topic_tools" type="relay" name="relay_front_scan" args="front/scan hokuyo_scan"/>
+    <node pkg="topic_tools" type="relay" name="relay_rear_scan" args="rear/scan hokuyo_scan"/>
+
+    <!-- Combine fron and back hokuyo scans into one -->
+    <node pkg="laser_assembler" type="laser_scan_assembler" name="assembler_hokuyo_scans">
+      <remap from="scan"          to="hokuyo_scan"/>
+      <param name="max_scans"     value="5" />
+      <param name="fixed_frame"   value="base_link" />
+    </node>
+
+
     <param name="robot_description"
        command="$(find xacro)/xacro '$(find nuridgeback_description)/urdf/nuridgeback.urdf.xacro'"/>
 
@@ -10,7 +22,7 @@
 
     <node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info"/>
 
-    <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter">
+    <!-- <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter">
       <rosparam file="$(find nuridgeback_robot)/config/imu/mag_config.yaml" />
       <rosparam>
         gain: 0.1
@@ -18,7 +30,7 @@
         publish_tf: false
         use_magnetic_field_msg: true
       </rosparam>
-    </node>
+    </node> -->
 
     <!-- Front rocker axle joint is always published on /joint_states and is remapped here -->
     <node pkg="ridgeback_base" type="ridgeback_node" name="ridgeback_node" output="screen">
