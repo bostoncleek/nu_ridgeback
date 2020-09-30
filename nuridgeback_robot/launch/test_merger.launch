@@ -1,39 +1,46 @@
 <launch>
-  <arg name="bag_file" value="$(find nuridgeback_robot)/rosbag/laser.bag"/>
-
-  <node pkg="rosbag" type="play" name="player" output="screen"
-   args="--clock $(arg bag_file)"/>
-
    <group ns="ridgeback">
 
+     <!-- TODO: move these to the slam launch file -->
+     <!-- Relay both hokuyo scans to same topic -->
      <node pkg="topic_tools" type="relay" name="relay_front_scan" args="front/scan hokuyo_scan"/>
      <node pkg="topic_tools" type="relay" name="relay_rear_scan" args="rear/scan hokuyo_scan"/>
 
      <!-- Relay merged hokuyo point clouds and point cloud from velodyne -->
-     <node pkg="topic_tools" type="relay" name="relay_merged_hokuyo" args="assembled_scan_cloud lidar_cloud"/>
-     <node pkg="topic_tools" type="relay" name="relay_velodyne" args="velodyne_points lidar_cloud"/>
-
-     <!-- TODO: namespace both nodes bellow -->
+     <!-- <node pkg="topic_tools" type="relay" name="relay_merged_hokuyo" args="assembled_scan_cloud lidar_cloud"/>
+     <node pkg="topic_tools" type="relay" name="relay_velodyne" args="velodyne_points lidar_cloud"/> -->
 
      <!-- Combine from and back hokuyo scans into one in the base_link frame -->
-     <node pkg="laser_assembler" type="laser_scan_assembler" name="assemble_hokuyo_scans">
-       <remap from="scan"          to="hokuyo_scan"/>
-       <param name="max_scans"     value="400" />
-       <param name="fixed_frame"   value="base_link" />
+     <group ns="hokuyo_scans">
+       <node pkg="laser_assembler" type="laser_scan_assembler" name="assemble_hokuyo_scans">
+         <remap from="scan"          to="/ridgeback/hokuyo_scan"/>
+         <param name="max_scans"     value="400" />
+         <param name="fixed_frame"   value="velodyne_scan" />
+       </node>
+     </group>
+
+
+     <node pkg="nodelet" type="nodelet" name="point_cloud_assembler" args="standalone rtabmap_ros/point_cloud_assembler" output="screen">
+       <remap from="cloud"           to="velodyne_points"/>
+       <param name="max_clouds"      value="10" />
+       <param name="fixed_frame_id"  value="base_link" />
      </node>
 
-     <!-- Combine point clouds from hokuyos and velodyne into one in the vleodyne scan frame -->
-     <!-- <node pkg="laser_assembler" type="point_cloud2_assembler" name="assemble_lidar_scans">
-       <remap from="cloud"         to="lidar_cloud"/>
-       <param name="max_clouds"    value="400" />
-       <param name="fixed_frame"   value="velodyne_scan" />
-     </node> -->
 
-     <!-- <node pkg="nuridgeback_robot" type="assemble_scans" name="assemble_scans" output="screen">
-       <param name="laser_assembler_srv"          value="assemble_scans2"/>
-       <param name="point_cloud_assembler_srv"    value="assemble_scans"/>
-       <param name="laser_rate_"                  value="20.0"/>
-       <param name="cloud_rate_"                  value="10.0"/>
-     </node> -->
+     <!-- Combine point clouds from hokuyos and velodyne into one in the vleodyne scan frame -->
+     <!-- <group ns="all_scans">
+       <node pkg="laser_assembler" type="point_cloud2_assembler" name="assemble_lidar_scans">
+         <remap from="cloud"         to="/ridgeback/lidar_cloud"/>
+         <param name="max_clouds"    value="10" />
+         <param name="fixed_frame"   value="velodyne_scan" />
+       </node>
+     </group> -->
+
+     <node pkg="nuridgeback_robot" type="assemble_scans" name="assemble_scans" output="screen">
+       <param name="laser_assembler_srv"          value="/ridgeback/hokuyo_scans/assemble_scans2"/>
+       <!-- <param name="point_cloud_assembler_srv"    value="/ridgeback/all_scans/assemble_scans2"/> -->
+       <param name="laser_rate_"                  value="10.0"/>
+       <!-- <param name="cloud_rate_"                  value="10.0"/> -->
+     </node>
    </group>
 </launch>
