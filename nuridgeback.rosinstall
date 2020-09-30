@@ -1,4 +1,8 @@
 - git:
+    local-name: nu_ridgeback
+    uri: https://github.com/bostoncleek/nu_ridgeback.git
+    version: master
+- git:
     local-name: ridgeback
     uri: https://github.com/bostoncleek/ridgeback.git
     version: noetic-devel
