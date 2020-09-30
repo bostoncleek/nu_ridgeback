@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(nuridgeback_robot)
 
-add_compile_options(-Wall -Wextra -Wno-psabi)
+add_compile_options(-Wall -Wextra)
 
 # Compile as C++20
 set(CMAKE_CXX_STANDARD 20)
