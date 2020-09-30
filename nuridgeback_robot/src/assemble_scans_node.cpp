@@ -1,9 +1,9 @@
 /**
-* @file assemble_scans_node.cpp
-* @author Boston CLeek
-* @date 29 Sep 2020
-* @brief Combines 2D and 3D lidar scans into a single point cloud
-*/
+ * @file assemble_scans_node.cpp
+ * @author Boston CLeek
+ * @date 29 Sep 2020
+ * @brief Combines 2D and 3D lidar scans into a single point cloud
+ */
 
 #include <string>
 
@@ -15,8 +15,6 @@
 #include <laser_assembler/AssembleScans.h>
 #include <laser_assembler/AssembleScans2.h>
 
-
-
 namespace assemble_scans
 {
 constexpr char LOGNAME[] = "assemble_scans";
@@ -24,7 +22,7 @@ constexpr char LOGNAME[] = "assemble_scans";
 class LidarAssembler
 {
 public:
-  LidarAssembler(const ros::NodeHandle &nh) : nh_(nh), first_scan_(false)/*, first_cloud_(false)*/
+  LidarAssembler(const ros::NodeHandle& nh) : nh_(nh), first_scan_(false) /*, first_cloud_(false)*/
   {
     loadParameters();
 
@@ -34,8 +32,10 @@ public:
     laser_cloud_pub_ = nh_.advertise<sensor_msgs::PointCloud2>("assembled_scan_cloud", 1, false);
     // assembled_cloud_pub_ = nh_.advertise<sensor_msgs::PointCloud2>("assembled_point_cloud", 1, false);
 
-    laser_timer_ = nh_.createTimer(ros::Duration(static_cast<double>(1.0/laser_rate_)), &LidarAssembler::laserCallback, this);
-    // cloud_timer_ = nh_.createTimer(ros::Duration(static_cast<double>(1.0/cloud_rate_)), &LidarAssembler::cloudCallback, this);
+    laser_timer_ =
+        nh_.createTimer(ros::Duration(static_cast<double>(1.0 / laser_rate_)), &LidarAssembler::laserCallback, this);
+    // cloud_timer_ = nh_.createTimer(ros::Duration(static_cast<double>(1.0/cloud_rate_)),
+    // &LidarAssembler::cloudCallback, this);
   }
 
 private:
@@ -52,7 +52,7 @@ private:
     ros::service::waitForService(laser_srv_name_);
     // ros::service::waitForService(cloud_srv_name_);
 
-    ROS_INFO_NAMED(LOGNAME, "Calling srv %s", laser_srv_name_.c_str()) ;
+    ROS_INFO_NAMED(LOGNAME, "Calling srv %s", laser_srv_name_.c_str());
     // ROS_INFO_NAMED(LOGNAME, "Calling srv %s", cloud_srv_name_.c_str()) ;
   }
 
@@ -69,7 +69,7 @@ private:
     // Merge 2D scans into a point cloud
     laser_assembler::AssembleScans2 srv;
     srv.request.begin = event.last_real;
-    srv.request.end   = event.current_real;
+    srv.request.end = event.current_real;
 
     // ROS_INFO_NAMED(LOGNAME, "Start: %f", event.last_real.toSec()) ;
     // ROS_INFO_NAMED(LOGNAME, "End: %f", event.current_real.toSec()) ;
@@ -80,7 +80,7 @@ private:
     }
     else
     {
-      ROS_ERROR_NAMED(LOGNAME, "Error making service call laser_assembler\n") ;
+      ROS_ERROR_NAMED(LOGNAME, "Error making service call laser_assembler\n");
     }
   }
 
@@ -132,8 +132,7 @@ private:
 
   ros::Timer laser_timer_, cloud_timer_;
 };
-}
-
+}  // namespace assemble_scans
 
 int main(int argc, char** argv)
 {
@@ -147,22 +146,5 @@ int main(int argc, char** argv)
 
   return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //
