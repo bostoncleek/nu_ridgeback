@@ -12,8 +12,8 @@
     version: noetic-devel
 - git:
     local-name: ridgeback_robot
-    uri: https://github.com/ridgeback/ridgeback_robot.git
-    version: kinetic-devel
+    uri: https://github.com/bostoncleek/ridgeback_robot.git
+    version: noetic-devel
 - git:
     local-name: urg_node
     uri: https://github.com/bostoncleek/urg_node.git
