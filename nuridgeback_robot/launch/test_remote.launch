@@ -6,7 +6,8 @@
   <machine if="$(eval robot == 1)" name="ridgeback"
                                    address="ridgeback"
                                    env-loader="/opt/ros/noetic/setup.bash"
-                                   user="administrator"/>
+                                   user="administrator"
+                                   password="nu-ridgeback"/>
 
 
   <node machine="ridgeback" pkg="topic_tools" type="relay" name="relay_front_scan" args="/ridgeback/front/scan /ridgeback/hokuyo_scan"/>
