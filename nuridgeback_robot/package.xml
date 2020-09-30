@@ -9,6 +9,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <depend>laser_assembler</depend>
   <depend>roscpp</depend>
+  <depend>rosparam_shortcuts</depend>
   <depend>sensor_msgs</depend>
 
 </package>

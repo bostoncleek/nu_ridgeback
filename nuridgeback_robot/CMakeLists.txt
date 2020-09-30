@@ -12,6 +12,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(catkin REQUIRED COMPONENTS
 						 laser_assembler
 						 roscpp
+						 rosparam_shortcuts
 						 sensor_msgs
 )
 
