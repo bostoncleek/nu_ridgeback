@@ -1,6 +1,9 @@
 <launch>
   <group ns="ridgeback">
-
+    <!-- TODO: convert 3D scan into image for global loop closure -->
+    <!-- SLAM using velodyne local loop closures can be detected -->
+    <!-- rtabmap parameters are set to use 3D lidar only
+         if you want to use 2D lidar some parameters will need to be changed -->
     <group ns="rtabmap">
       <node pkg="rtabmap_ros" type="rtabmap" name="rtabmap" output="screen" args="--delete_db_on_start">
         <param name="frame_id"                          value="base_link"/>
@@ -14,7 +17,7 @@
         <param name="subscribe_scan_cloud"              value="true"/>
         <param name="approx_sync"                       value="false"/>
 
-        <!-- <remap from="scan_cloud" to="assembled_cloud"/> -->
+        <!-- <remap from="scan_cloud"                        to="/ridgeback/assembled_cloud"/> -->
         <remap from="scan_cloud"                        to="/ridgeback/velodyne_points"/>
 
         <!-- RTAB-Map's parameters -->
@@ -59,9 +62,4 @@
       </node>
     </group>
   </group>
-
-  <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
-          args="-d $(find nuridgeback_robot)/config/slam.rviz" output="screen">
-  </node>
-
 </launch>
