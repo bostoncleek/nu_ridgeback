@@ -1,0 +1,10 @@
+<launch>
+  <arg name="viz_slam" default="false" doc="visualize slam outputs"/>
+  <arg name="viz_nav" default="false"  doc="visualize navigation outputs"/>
+
+  <node if="$(arg viz_slam)" name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
+          args="-d $(find nuridgeback_robot)/config/slam.rviz" output="screen"/>
+
+  <node if="$(arg viz_nav)" name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"
+          args="-d $(find nuridgeback_robot)/config/navigation.rviz" output="screen"/>
+</launch>
