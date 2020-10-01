@@ -1,0 +1,10 @@
+<launch>
+  <arg name="robot" default="0" doc="sets machine address (if 0 then runs on ridgeback)"/>
+
+  <machine if="$(eval robot == 0)" name="ridgeback" address="localhost"/>
+
+  <machine if="$(eval robot == 1)" name="ridgeback"
+                                   address="ridgeback"
+                                   env-loader="/home/administrator/sawback_ws/devel/env.sh"
+                                   user="administrator"/>
+</launch>
