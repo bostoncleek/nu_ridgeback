@@ -1,0 +1,10 @@
+<launch>
+  <!-- Base functionality and sensors -->
+  <include file="$(find nuridgeback_robot)/launch/base.launch"/>
+
+  <!-- SLAM using velodyne -->
+  <include file="$(find nuridgeback_robot)/launch/laser_slam.launch"/>
+
+  <!-- Navigation stack -->
+  <include file="$(find nuridgeback_robot)/launch/move_base.launch"/>
+</launch>
