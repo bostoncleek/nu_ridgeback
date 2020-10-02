@@ -3,18 +3,8 @@
 
   <machine if="$(eval robot == 0)" name="ridgeback" address="localhost"/>
 
-  <!-- <machine if="$(eval robot == 1)" name="ridgeback"
+  <machine if="$(eval robot == 1)" name="ridgeback"
                                    address="ridgeback"
-                                   env-loader="/home/administrator/sawback_ws/devel/env.sh"
-                                   user="administrator"/> -->
-
-   <machine if="$(eval robot == 1)" name="ridgeback"
-                                    address="ridgeback"
-                                    env-loader="/home/administrator/install/env.sh"
-                                    user="administrator"/>
-
-
-  <!-- ONLY FOR TESTING -->
-  <!-- REMOVE!!! -->
-  <node machine="ridgeback" pkg="topic_tools" type="relay" name="relay_front_scan" args="front/scan hokuyo_scan"/>
+                                   env-loader="/home/administrator/install/env.sh"
+                                   user="administrator"/>
 </launch>
