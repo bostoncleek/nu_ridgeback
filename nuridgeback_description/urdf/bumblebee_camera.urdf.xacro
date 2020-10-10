@@ -12,7 +12,7 @@
  <joint name="base_to_bb2_mesh" type="fixed">
    <parent link="mid_mount" />
    <child link="bb2_mesh" />
-   <origin xyz="0.43 0 0" rpy="0 0 1.5708" />
+   <origin xyz="0.43 0 0" rpy="0.663 0 1.5708" />
  </joint>
 
  <!-- Create a link between the BB2 mesh and sensor origin -->
@@ -24,12 +24,19 @@
    <origin xyz="0.001 0 0.07" rpy="0 0 ${-1.5708}" />
  </joint>
 
- <!-- <link name="bb2_optical_link" /> -->
  <link name="bb2_optical_link" />
 
  <joint name="bb2_origin_to_bb2_camera" type="fixed">
    <parent link="bb2_origin" />
    <child link="bb2_optical_link" />
-   <origin xyz="0.01 0 0" rpy="${-1.5708} 0 ${-1.5708}" />
+   <origin xyz="0 0 0" rpy="${-1.5708} 0 ${-1.5708}" />
+ </joint>
+
+ <link name="bb2_left_optical_link" />
+
+ <joint name="bb2_left_optical_joint" type="fixed">
+   <parent link="bb2_optical_link" />
+   <child link="bb2_left_optical_link" />
+   <origin xyz="-0.06 0 0" rpy="0 0 0" />
  </joint>
 </robot>
