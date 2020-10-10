@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot name="box" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+<!-- box -->
+<xacro:property name="bl" value="0.1" />
+<xacro:property name="bw" value="0.065" />
+<xacro:property name="bh" value="0.04" />
+
+<!-- box center from base -->
+<xacro:property name="bx" value="0.8" />
+<xacro:property name="by" value="0.0" />
+<xacro:property name="bz" value="0.290" />
+
+<link name="base"/>
+
+<joint name="mounter_joint" type="fixed">
+ <parent link="mount_link" />
+ <child link="base" />
+ <origin xyz="0 0 0.0099" rpy="0 0 0" />
+</joint>
+
+
+<link name="box_link" >
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="${bl} ${bw} ${bh}" />
+    </geometry>
+    <material name="Red2">
+      <color rgba="1 0 0 1"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="box_joint" type="fixed">
+ <parent link="base" />
+ <child link="box_link" />
+ <origin xyz="${bx} ${by} ${bh/2.0 - bz}" rpy="0 1.57 1.57" />
+</joint>
+</robot>

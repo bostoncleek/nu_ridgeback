@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /TF1
         - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 549
@@ -68,6 +69,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         base_link:
           Alpha: 1
           Show Axes: false
@@ -85,6 +90,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        box_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         chassis_link:
           Alpha: 1
           Show Axes: false
@@ -138,6 +148,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        mount_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         rear_cover_link:
           Alpha: 1
           Show Axes: false
@@ -194,10 +209,68 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        axle_link:
+          Value: false
+        base:
+          Value: true
+        base_link:
+          Value: true
+        bb2_mesh:
+          Value: true
+        bb2_optical_link:
+          Value: false
+        bb2_origin:
+          Value: true
+        box_link:
+          Value: true
+        chassis_link:
+          Value: false
+        controller_enclosure:
+          Value: false
+        front_cover_link:
+          Value: false
+        front_laser:
+          Value: false
+        front_left_wheel_link:
+          Value: false
+        front_lights_link:
+          Value: false
+        front_right_wheel_link:
+          Value: false
+        front_rocker_link:
+          Value: false
+        imu_link:
+          Value: false
+        left_side_cover_link:
+          Value: false
+        mid_mount:
+          Value: false
+        mount_link:
+          Value: false
+        rear_cover_link:
+          Value: false
+        rear_laser:
+          Value: false
+        rear_left_wheel_link:
+          Value: false
+        rear_lights_link:
+          Value: false
+        rear_right_wheel_link:
+          Value: false
+        rear_rocker_link:
+          Value: false
+        right_side_cover_link:
+          Value: false
+        top_link:
+          Value: false
+        velodyne_mesh:
+          Value: false
+        velodyne_scan:
+          Value: false
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -205,9 +278,55 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        base_link:
+          chassis_link:
+            axle_link:
+              front_rocker_link:
+                front_left_wheel_link:
+                  {}
+                front_right_wheel_link:
+                  {}
+              rear_rocker_link:
+                rear_left_wheel_link:
+                  {}
+                rear_right_wheel_link:
+                  {}
+            front_cover_link:
+              {}
+            front_laser:
+              {}
+            front_lights_link:
+              {}
+            imu_link:
+              {}
+            left_side_cover_link:
+              {}
+            rear_cover_link:
+              {}
+            rear_laser:
+              {}
+            rear_lights_link:
+              {}
+            right_side_cover_link:
+              {}
+            top_link:
+              {}
+          mid_mount:
+            bb2_mesh:
+              bb2_origin:
+                bb2_optical_link:
+                  {}
+            controller_enclosure:
+              {}
+            velodyne_mesh:
+              velodyne_scan:
+                {}
+          mount_link:
+            base:
+              box_link:
+                {}
       Update Interval: 0
-      Value: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -252,9 +371,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.425398588180542
+      Pitch: -0.2896014153957367
       Target Frame: <Fixed Frame>
-      Yaw: 6.153581142425537
+      Yaw: 1.2953919172286987
     Saved: ~
 Window Geometry:
   Displays:
