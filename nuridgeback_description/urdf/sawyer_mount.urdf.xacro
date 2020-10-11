@@ -25,8 +25,8 @@
   </link>
 
   <joint name="mount_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.19 0.0 0.280"/>
+    <origin rpy="0 0 0" xyz="0.205 0.0 0.280"/>
     <parent link="base_link"/>
     <child link="mount_link"/>
-  </joint>  
+  </joint>
 </robot>
