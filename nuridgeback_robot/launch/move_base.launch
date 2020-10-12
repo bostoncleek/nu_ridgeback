@@ -1,6 +1,6 @@
 <launch>
   <group ns="ridgeback">
-    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <node machine="ridgeback" pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
       <!-- Common cost map parameters -->
       <rosparam file="$(find nuridgeback_robot)/config/navigation/costmap/costmap_common_params.yaml" command="load" ns="global_costmap"/>
