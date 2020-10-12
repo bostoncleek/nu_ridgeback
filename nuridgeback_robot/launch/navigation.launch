@@ -1,0 +1,10 @@
+<launch>
+  <arg name="robot" default="0" doc="sets machine address (if 0 then runs on ridgeback)"/>
+
+  <include file="$(find nuridgeback_robot)/launch/basic_remote.launch">
+    <arg name="robot" value="$(arg robot)"/>
+  </include>
+
+  <include file="$(find nuridgeback_robot)/launch/move_base.launch"/>
+  
+</launch>
