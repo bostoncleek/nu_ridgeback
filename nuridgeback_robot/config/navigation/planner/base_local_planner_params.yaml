@@ -15,9 +15,9 @@ TrajectoryPlannerROS:
   # min_vel_theta: -1.57
   # min_in_place_vel_theta: 0.314
 
-  acc_lim_x: 1.0
-  acc_lim_y: 1.0
-  acc_lim_theta:  2.0
+  acc_lim_x: 0.5
+  acc_lim_y: 0.5
+  acc_lim_theta:  0.2
 
   max_vel_x: 0.2
   min_vel_x: 0.05
