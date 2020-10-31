@@ -1,0 +1,84 @@
+- git:
+    local-name: ridgeback
+    uri: https://github.com/bostoncleek/ridgeback.git
+    version: noetic-devel
+- git:
+    local-name: ridgeback_simulator
+    uri: https://github.com/bostoncleek/ridgeback_simulator.git
+    version: noetic-devel
+- git:
+    local-name: ridgeback_desktop
+    uri: https://github.com/bostoncleek/ridgeback_desktop.git
+    version: noetic-devel
+- git:
+    local-name: ridgeback_robot
+    uri: https://github.com/bostoncleek/ridgeback_robot.git
+    version: noetic-devel
+- git:
+    local-name: urg_node
+    uri: https://github.com/bostoncleek/urg_node.git
+    version: kinetic-devel
+- git:
+    local-name: puma_motor_driver
+    uri: https://github.com/clearpathrobotics/puma_motor_driver.git
+    version: master
+- git:
+    local-name: pointgrey_camera_driver
+    uri: https://github.com/ros-drivers/pointgrey_camera_driver.git
+    version: noetic-devel
+- git:
+    local-name: microstrain_3dmgx2_imu
+    uri: https://github.com/ros-drivers/microstrain_3dmgx2_imu.git
+    version: indigo-devel
+- git:
+    local-name: robot_upstart
+    uri: https://github.com/Crowdedlight/robot_upstart.git
+    version: noetic-devel
+- git:
+    local-name: serial
+    uri: https://github.com/wjwwood/serial.git
+    version: master
+- git:
+    local-name: intera_common
+    uri: https://github.com/RethinkRobotics/intera_common.git
+    version: v5.3.0
+- git:
+    local-name: interactive_marker_twist_server
+    uri: https://github.com/ros-visualization/interactive_marker_twist_server.git
+    version: kinetic-devel
+- git:
+    local-name: intera_sdk
+    uri: https://github.com/bostoncleek/intera_sdk.git
+    version: noetic-devel
+- git: moveit_visual_tools
+    local-name:
+    uri: https://github.com/ros-planning/moveit_visual_tools.git
+    version: master
+- git:
+    local-name: rosserial
+    uri: https://github.com/ros-drivers/rosserial.git
+    version: noetic-devel
+- git:
+    local-name: sawyer_moveit
+    uri: https://github.com/bostoncleek/sawyer_moveit.git
+    version: noetic-devel
+- git:
+    local-name: sawyer_robot
+    uri: https://github.com/bostoncleek/sawyer_robot.git
+    version: noetic-devel
+- git:
+    local-name: sawyer_simulator
+    uri: https://github.com/bostoncleek/sawyer_simulator.git
+    version: noetic-devel
+- git:
+    local-name: sns_ik
+    uri: https://github.com/RethinkRobotics-opensource/sns_ik.git
+    version: melodic-devel
+- git:
+    local-name: teleop_twist_joy
+    uri: https://github.com/ros-teleop/teleop_twist_joy.git
+    version: melodic-devel
+- git:
+    local-name: urg_c
+    uri: https://github.com/ros-drivers/urg_c.git
+    version: master
