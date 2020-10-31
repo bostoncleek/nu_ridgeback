@@ -42,3 +42,47 @@
     local-name: serial
     uri: https://github.com/wjwwood/serial.git
     version: master
+- git:
+    local-name: intera_common
+    uri: https://github.com/RethinkRobotics/intera_common.git
+    version: v5.3.0
+- git:
+    local-name: interactive_marker_twist_server
+    uri: https://github.com/ros-visualization/interactive_marker_twist_server.git
+    version: kinetic-devel
+- git:
+    local-name: intera_sdk
+    uri: https://github.com/bostoncleek/intera_sdk.git
+    version: noetic-devel
+- git: moveit_visual_tools
+    local-name:
+    uri: https://github.com/ros-planning/moveit_visual_tools.git
+    version: master
+- git:
+    local-name: rosserial
+    uri: https://github.com/ros-drivers/rosserial.git
+    version: noetic-devel
+- git:
+    local-name: sawyer_moveit
+    uri: https://github.com/bostoncleek/sawyer_moveit.git
+    version: noetic-devel
+- git:
+    local-name: sawyer_robot
+    uri: https://github.com/bostoncleek/sawyer_robot.git
+    version: noetic-devel
+- git:
+    local-name: sawyer_simulator
+    uri: https://github.com/bostoncleek/sawyer_simulator.git
+    version: noetic-devel
+- git:
+    local-name: sns_ik
+    uri: https://github.com/RethinkRobotics-opensource/sns_ik.git
+    version: melodic-devel
+- git:
+    local-name: teleop_twist_joy
+    uri: https://github.com/ros-teleop/teleop_twist_joy.git
+    version: melodic-devel
+- git:
+    local-name: urg_c
+    uri: https://github.com/ros-drivers/urg_c.git
+    version: master
