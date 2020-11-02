@@ -1,1 +1,5 @@
-
+# set ROS MASTER URI AND ROS IP
+export ROS_MASTER_URI=http://192.168.131.40:11311
+# TODO write script to set ROS_IP
+#export ROS_IP=10.42.0.171
+export ROS_IP=192.168.131.1
