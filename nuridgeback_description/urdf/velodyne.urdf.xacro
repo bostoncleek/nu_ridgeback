@@ -1,5 +1,51 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <xacro:macro name="VLP-16" params="name:=velodyne topic:=velodyne_points">
+    <!-- Gazebo requires the velodyne_gazebo_plugins package -->
+    <gazebo reference="${name}">
+      <sensor type="ray" name="${name}-VLP16">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1875</samples>
+              <resolution>1</resolution>
+              <min_angle>${-1.0*M_PI}</min_angle>
+              <max_angle>${M_PI}</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>16</samples>
+              <resolution>1</resolution>
+              <min_angle>-${15.0*M_PI/180.0}</min_angle>
+              <max_angle> ${15.0*M_PI/180.0}</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.3</min>
+            <max>${130.0+1.0}</max>
+            <resolution>0.001</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.0</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_velodyne_laser.so">
+          <topicName>${topic}</topicName>
+      	  <frameName>${name}</frameName>
+          <min_range>0.9</min_range>
+          <max_range>130.0</max_range>
+          <gaussianNoise>0.008</gaussianNoise>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+
   <!-- Create link for VLP16 mesh  -->
   <link name="velodyne_mesh">
     <visual>
@@ -31,4 +77,6 @@
     <child link="velodyne_scan" />
     <origin xyz="0 0 0.195" rpy="0 0 0" />
   </joint>
+
+  <xacro:VLP-16 name="velodyne_scan" topic="velodyne_points"/>
 </robot>
