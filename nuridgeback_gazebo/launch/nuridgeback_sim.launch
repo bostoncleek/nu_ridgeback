@@ -1,0 +1,55 @@
+<launch>
+  <!-- Robot Spawn Pose -->
+  <arg name="x" default="0.0" doc="x poisiton of ridgeback"/>
+  <arg name="y" default="0.0" doc="y poisiton of ridgeback"/>
+  <arg name="z" default="0.0" doc="z poisiton of ridgeback"/>
+  <arg name="yaw" default="0.0" doc="yaw of ridgeback"/>
+
+  <!-- ros control -->
+  <!-- <include file="$(find ridgeback_control)/launch/control.launch" /> -->
+  <!-- <rosparam command="load" file="$(find ridgeback_control)/config/control.yaml" />
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="namespace=/ridgeback
+              ridgeback_joint_publisher
+              ridgeback_velocity_controller" />
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+    <remap from="/ridgeback/odometry/filtered" to="/odometry/filtered" />
+    <remap from="/imu/data" to="/ridgeback/imu/data" />
+  </node>
+
+  <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
+        args="/cmd_vel ridgeback_velocity_controller/cmd_vel" /> -->
+
+
+  <!-- teleop -->
+  <!-- <include file="$(find ridgeback_control)/launch/teleop.launch">
+    <arg name="joystick" value="false"/>
+  </include> -->
+
+  <node name="robot_state_publisher_ridgeback" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- NU ridgeback -->
+  <param name="robot_description"
+      command="$(find xacro)/xacro '$(find nuridgeback_description)/urdf/nuridgeback.urdf.xacro'"/>
+
+  <rosparam param="gazebo_ros_control/pid_gains">
+    front_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    front_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+  </rosparam>
+</launch>

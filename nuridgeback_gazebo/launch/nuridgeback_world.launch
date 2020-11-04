@@ -1,0 +1,48 @@
+<launch>
+  <!-- viz in rviz -->
+  <arg name="launch_rviz" default="true" doc="launch rviz"/>
+
+  <!-- simulate in gazebo -->
+  <arg name="launch_gazebo" default="true" doc="launch gazebo"/>
+
+  <!-- simulate sawback in gazebo -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <!-- spawing state of sawback -->
+  <arg name="x" default="0.0" doc="x poisiton of ridgeback"/>
+  <arg name="y" default="0.0" doc="y poisiton of ridgeback"/>
+  <arg name="z" default="0.05" doc="z poisiton of ridgeback"/>
+  <arg name="yaw" default="0.0" doc="yaw of ridgeback"/>
+
+  <!-- gazebo ros joint state publisher publishes the joint state for the front rocker -->
+  <remap from="/joint_states" to="/ridgeback/joint_states" />
+
+  <!-- ridgeback -->
+  <group ns="ridgeback">
+    <include file="$(find nuridgeback_gazebo)/launch/nuridgeback_sim.launch"/>
+  </group>
+
+  <!-- spawn urdf containing both sawyer and the ridgeback  -->
+  <node name="urdf_spawn_sawback" pkg="gazebo_ros" type="spawn_model"
+     args="-param /ridgeback/robot_description -urdf -model nuridgeback
+       -x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw)"
+     respawn="false" output="screen"/>
+
+  <!-- load world empty -->
+  <include if="$(arg launch_gazebo)" file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="verbose" value="false"/>
+  </include>
+
+  <!-- rviz is a required package -->
+  <node if="$(arg launch_rviz)" name="rviz" pkg="rviz" type="rviz" required="true"
+                 args="-d $(find nuridgeback_gazebo)/config/nuridgeback_gazebo.rviz"/>
+</launch>
