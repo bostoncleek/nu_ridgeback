@@ -85,5 +85,5 @@
    <origin xyz="-0.06 0 0" rpy="0 0 0" />
  </joint>
 
- <xacro:BB2 camera_link="bb2_origin" camera_optical_link="bb2_optical_link"/>
+ <xacro:BB2 camera_link="/bb2_origin" camera_optical_link="/bb2_optical_link"/>
 </robot>

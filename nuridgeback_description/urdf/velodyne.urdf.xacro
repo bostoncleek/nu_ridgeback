@@ -2,8 +2,8 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:property name="M_PI" value="3.1415926535897931" />
 
+  <!-- Gazebo requires the velodyne_gazebo_plugins package -->
   <xacro:macro name="VLP-16" params="name:=velodyne topic:=velodyne_points">
-    <!-- Gazebo requires the velodyne_gazebo_plugins package -->
     <gazebo reference="${name}">
       <sensor type="ray" name="${name}-VLP16">
         <pose>0 0 0 0 0 0</pose>
@@ -78,5 +78,5 @@
     <origin xyz="0 0 0.195" rpy="0 0 0" />
   </joint>
 
-  <xacro:VLP-16 name="velodyne_scan" topic="velodyne_points"/>
+  <xacro:VLP-16 name="velodyne_scan" topic="ridgeback/velodyne_points"/>
 </robot>
