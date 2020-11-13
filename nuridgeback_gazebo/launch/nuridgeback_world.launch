@@ -1,9 +1,14 @@
 <launch>
   <!-- viz in rviz -->
-  <arg name="launch_rviz" default="true" doc="launch rviz"/>
+  <arg name="launch_rviz" default="false" doc="launch rviz"/>
 
-  <!-- simulate in gazebo -->
-  <arg name="launch_gazebo" default="true" doc="launch gazebo"/>
+  <!-- empty world -->
+  <arg name="empty_world" default="false" doc="empty world gazebo"/>
+
+  <!-- world file -->
+  <!-- <arg name="world" default="$(find nuridgeback_gazebo)/worlds/race.world" doc="load world file gazebo"/> -->
+  <arg name="world" default="$(find nuridgeback_gazebo)/worlds/maze1.world" doc="load world file gazebo"/>
+  <!-- <arg name="world" default="$(find nuridgeback_gazebo)/worlds/scenario1.world" doc="load world file gazebo"/> -->
 
   <!-- simulate sawback in gazebo -->
   <arg name="paused" default="false"/>
@@ -33,7 +38,17 @@
      respawn="false" output="screen"/>
 
   <!-- load world empty -->
-  <include if="$(arg launch_gazebo)" file="$(find gazebo_ros)/launch/empty_world.launch">
+  <include if="$(arg empty_world)" file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="verbose" value="false"/>
+  </include>
+
+  <include unless="$(arg empty_world)" file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world)"/>
     <arg name="debug" value="$(arg debug)" />
     <arg name="gui" value="$(arg gui)" />
     <arg name="paused" value="$(arg paused)"/>
