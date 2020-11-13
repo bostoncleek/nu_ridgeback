@@ -26,7 +26,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Velodyne
+    SyncSource: CostCloud
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -68,6 +68,10 @@ Visualization Manager:
           Show Trail: false
           Value: true
         base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bb2_left_optical_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -331,22 +335,22 @@ Visualization Manager:
       Class: rviz/Map
       Color Scheme: costmap
       Draw Behind: false
-      Enabled: true
+      Enabled: false
       Name: GlobalCostMap
       Topic: /ridgeback/move_base/global_costmap/costmap
       Unreliable: false
       Use Timestamp: false
-      Value: true
+      Value: false
     - Alpha: 0.699999988079071
       Class: rviz/Map
       Color Scheme: costmap
       Draw Behind: false
-      Enabled: true
+      Enabled: false
       Name: LocalCostMap
       Topic: /ridgeback/move_base/local_costmap/costmap
       Unreliable: false
       Use Timestamp: false
-      Value: true
+      Value: false
     - Alpha: 1
       Axes Length: 1
       Axes Radius: 0.10000000149011612
@@ -375,7 +379,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: Intensity
       Decay Time: 0
-      Enabled: true
+      Enabled: false
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Max Intensity: 4096
@@ -392,7 +396,7 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -508,7 +512,6 @@ Visualization Manager:
       Class: rtabmap_ros/MapGraph
       Enabled: true
       Global loop closure: 255; 0; 0
-      Landmark: 0; 128; 0
       Local loop closure: 255; 255; 0
       Merged neighbor: 255; 170; 0
       Name: MapGraph
@@ -549,6 +552,16 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: false
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic: /map
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -577,7 +590,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 14.759840965270996
+      Distance: 22.980356216430664
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -585,17 +598,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 1.043918251991272
-        Y: 0.09790723025798798
-        Z: 0.4120679497718811
+        X: 0.8054595589637756
+        Y: -7.189847946166992
+        Z: 1.1782008409500122
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.85479736328125
+      Pitch: 0.6997974514961243
       Target Frame: <Fixed Frame>
-      Yaw: 2.377403974533081
+      Yaw: 3.022406816482544
     Saved: ~
 Window Geometry:
   Displays:
@@ -613,5 +626,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1455
-  X: 397
-  Y: 50
+  X: 2013
+  Y: 45
