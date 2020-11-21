@@ -1,9 +1,17 @@
 <launch>
   <group ns="ridgeback">
+
+    <arg name="ridgeback_urdf" default="true"/>
+
     <include file="$(find nuridgeback_robot)/launch/accessories.launch" />
 
-    <param name="robot_description"
+    <param if="$(arg ridgeback_urdf)" name="robot_description"
        command="$(find xacro)/xacro '$(find nuridgeback_description)/urdf/nuridgeback.urdf.xacro'"/>
+
+    <param unless="$(arg ridgeback_urdf)" name="robot_description"
+       command="$(find xacro)/xacro $(find sawback_description)/urdf/sawback.urdf.xacro
+            gazebo:=false electric_gripper:=true
+            pedestal:=false static:=false"/>
 
     <!-- In the ridgeback namespace this robot_state_publisher will not override sawyer's robot_state_publisher -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
