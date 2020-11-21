@@ -1,22 +1,6 @@
 <launch>
   <arg name="robot" default="0" doc="sets machine address (if 0 then runs on ridgeback)"/>
 
-  <!-- <machine if="$(eval robot == 0)" name="ridgeback" address="localhost"/>
-
-  <machine if="$(eval robot == 1)" name="ridgeback"
-                                   address="ridgeback"
-                                   env-loader="/home/administrator/install/env.sh"
-                                   user="administrator"/> -->
-
-
-  <!-- <machine if="$(eval robot == 0)" name="ridgeback" address="localhost"/>
-
-  <machine if="$(eval robot == 1)" name="ridgeback"
-                                    address="ridgeback"
-                                    env-loader="/home/administrator/install/env.sh"
-                                    user="administrator"/> -->
-
-
   <machine if="$(eval robot == 0)" name="ridgeback" address="localhost"/>
 
   <!-- IMPORTANT: export ROS_MASTER_URI and ROS_IP using catkin hook -->
@@ -27,6 +11,5 @@
                                     timeout="10.0"/>
 
   <!-- <node machine="ridgeback" pkg="intera_interface" type="enable_robot.py" name="enable_robot" args="-e" output="screen"/> -->
-  <node machine="ridgeback"  pkg="intera_interface" type="gripper_action_server.py" name="gripper_action_server"/>
-  <!-- <node machine="ridgeback"  pkg="turtlesim" type="turtle_teleop_key" name="turtle_teleop_key"/> -->
+  <!-- <node machine="ridgeback"  pkg="intera_interface" type="gripper_action_server.py" name="gripper_action_server"/> -->
 </launch>
