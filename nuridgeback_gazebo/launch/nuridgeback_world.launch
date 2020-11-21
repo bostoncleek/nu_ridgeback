@@ -32,7 +32,7 @@
   </group>
 
   <!-- spawn urdf containing both sawyer and the ridgeback  -->
-  <node name="urdf_spawn_sawback" pkg="gazebo_ros" type="spawn_model"
+  <node name="spawn_ridgeback" pkg="gazebo_ros" type="spawn_model"
      args="-param /ridgeback/robot_description -urdf -model nuridgeback
        -x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw)"
      respawn="false" output="screen"/>
