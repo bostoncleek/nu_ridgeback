@@ -1,0 +1,17 @@
+<launch>
+  <arg name="robot" default="0" doc="sets machine address (if 0 then runs on ridgeback)"/>
+
+  <include file="$(find nuridgeback_robot)/launch/basic_remote.launch">
+    <arg name="robot" value="$(arg robot)"/>
+  </include>
+
+  <group ns="ridgeback">
+    <node machine="ridgeback" pkg="ergodic_exploration" type="exploration" name="exploration" output="screen">
+      <remap from="map"                      to="rtabmap/grid_map"/>
+      <remap from="odom"                     to="ridgeback_velocity_controller/odom"/>
+      <remap from="scan"                     to="front/scan"/>
+      <remap from="cmd_vel"                  to="ridgeback_velocity_controller/cmd_vel"/>
+      <!-- <remap from="map"                      to="/ridgeback/rtabmap/octomap_grid"/> -->
+    </node>
+  </group>
+</launch>
