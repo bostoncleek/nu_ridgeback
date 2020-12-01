@@ -1,0 +1,29 @@
+##########################
+# Computation Parameters #
+##########################
+# The number of beam angles for mutual
+# information computation.
+num_beams: 100
+# The number of beams angles used to
+# condition the map at a single point.
+condition_steps: 50000
+# The standard deviation of the sensor noise.
+# If the noise dev is <= 0 the barely distorted
+# computation will be used.
+noise_dev: 0 # Meters
+# The number of standard deviations before the
+# noise is truncated.
+noise_truncation: 4 # Std Deviations
+# An integration step for the sensor noise
+noise_integration_step: 0.25 # Meters
+
+
+#################
+# Visualization #
+#################
+# Publish a mutual information surface to
+# RVIZ once it is computed
+visualize: true
+# Publish incomplete mutual information surfaces to
+# RVIZ as they are being computed
+visualize_more: true
