@@ -1,18 +1,32 @@
 # nu_ridgeback
 
-A custom repository for the NWU03 Ridgeback. Equipped with a VLP16, Bumblebee, and Sawyer manipulator
+# Overview
+A custom repository for Northwestern University's Ridgeback. The Ridgeback is equipped with a Velodyne lidar, Bumblebee depth camera, 2 Hokoyu UST10LX lidars and a Sawyer manipulator.
 
+On startup the ridgeback will already be running `base.launch` and `laser_slam.launch` via
+the `ridgeback.service`.
 
-# Calibrate the Bumblebee Camera
-Requires [FlyCapture SDK](https://www.flir.com/products/flycapture-sdk/)
-
+Ridgeback computer:
 ```
-rosrun camera_calibration cameracalibrator.py --approximate 0.1 --size 8x6 --square 0.025 right:=/camera/right/image_raw left:=/camera/left/image_raw right_camera:=/camera/right left_camera:=/camera/left
+username: administrator
+password: nu-ridgeback
 ```
 
-The calibration file from the `camera_calibration` package is located in `$HOME/.ros/camera_info`.
+Ridgeback hotspot:
+```
+name: Hostspot
+password: ridgeback
+```
 
-The camera's serial number is `19363403`. To retrieve camera information run:
-```
-rosrun pointgrey_camera_driver list_cameras
-```
+<p align="center">
+  <img src="/nuridgeback_robot/media/nurb1.jpg" width="400" height="400"/>
+</p>
+
+
+# Packages
+* [nuridgeback_bringup](https://github.com/bostoncleek/nu_ridgeback/tree/master/nuridgeback_bringup): networking, configuration, and ROS Noetic
+* [nuridgeback_description](https://github.com/bostoncleek/nu_ridgeback/tree/master/nuridgeback_description): urdf and meshes
+* [nuridgeback_gazebo](https://github.com/bostoncleek/nu_ridgeback/tree/master/nuridgeback_gazebo): gazebo simulation
+* [nuridgeback_robot](https://github.com/bostoncleek/nu_ridgeback/tree/master/nuridgeback_robot): launch sensors, mobile base, navigation, exploration, localization, and mapping
+
+For manipulation see the [sawback](https://github.com/bostoncleek/sawback) package.
