@@ -4,9 +4,6 @@
 This package contains the launch files capable of launching sensors, mobile base, navigation, exploration, localization, and mapping on the Ridgeback.
 
 # Getting Started
-On startup the ridgeback will already be running `base.launch` and `laser_slam.launch` via
-the `ridgeback.service`.
-
 
 Steps 1 through 4 are executed on your personal computer.
 Step 5 must be executed on the Ridgeback's computer.
@@ -101,9 +98,16 @@ install space to the Ridgeback.
 To see how to launch nodes from your personal computer but have them execute on the Ridgeback's
 computer see `basic_remote.launch`.
 
-On startup the Ridgeback will already be running `base.launch` and `laser_slam.launch` via the `ridgeback.service`. The file `base.launch` takes an argument `ridgeback_urdf` which will either load the Sawback URDF or the Ridgeback URDF. By defualt the Sawback URDF is loaded. The file `base.launch` will start odometry and allow you to teleoperate the Ridgeback using the PS4 gamepad.
-The file `laser_slam.launch` will perform 3D SLAM using the Velodyne lidar. The occupancy map on `/ridgeback/rtabmap/grid_map`, TF from `map` to `base_link`, and the robot's path on `/ridgeback/rtabmap/mapGraph` are provided by RTAB-MAP.
+The two most useful launch files are `base.launch` and `laser_slam.launch`.
+The file `base.launch` takes an argument `ridgeback_urdf` which will either load the Sawback URDF or the Ridgeback URDF. By defualt the Sawback URDF is loaded. The file `base.launch` will start odometry and allow you to teleoperate the Ridgeback using the PS4 gamepad. The file `laser_slam.launch` will perform 3D SLAM using the Velodyne lidar. The occupancy map on `/ridgeback/rtabmap/grid_map`, TF from `map` to `base_link`, and the robot's path on `/ridgeback/rtabmap/mapGraph` are provided by RTAB-MAP.
 
+In order to launch `base.launch` and `laser_slam.launch` Sawyer's computer must be on because it is running ROS master.
+
+Once Sawyer has fully booted execute the following from the Ridgeback's computer:
+```
+roslaunch nuridgeback_robot base.launch
+roslaunch nuridgeback_robot laser_slam.launch
+```
 
 The `robot` argument specifies whether the node will run on the Ridgeback's computer or
 your personal computer. Set the argument to `0` to run the node on the Ridgeback's computer and set to `1` to run on your personal computer. By default the argument is set to `0` in `navigation.launch` and `exploration.launch`.
