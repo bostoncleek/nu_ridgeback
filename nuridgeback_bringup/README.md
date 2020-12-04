@@ -84,7 +84,12 @@ You will now be able to ssh into the Ridgeback and you should be able to ping al
 Use network manager to enable bluetooth and pair the gamepad.  
 
 # Udev Rules
+Place the udev rules from `/udev` in `/etc/udev/rules.d`. To load and trigger the udev rules
+execute:
 
+```
+udevadm control --reload-rules && udevadm trigger
+```
 
 # Workspace
 Currently there are three catkin workspaces chained together on the Ridgeback.
@@ -125,11 +130,11 @@ The expected output:
 ```
 
 # Service
+- IMPORTANT: The service can only start correctly if the Sawyer's computer has booted. Because of this reason I do not think it makes sense to use the `ridgeback.service`. Instead I found it easier
+to manually launch them.
+
 The `ridgeback.service` file in `/service` allows the Ridgeback to launch `base.launch` and
 `laser_slam.launch` on startup. This service executes the `nuridgeback_startup` script located in `/scripts`.
-
-- IMPORTANT: The service can only start correctly if the Sawyer's computer has booted.
-
 
 Place the `ridgeback.service` in `/etc/systemd/system/` on the Ridgeback's computer.
 
