@@ -3,17 +3,10 @@
 # Overview
 Here are instructions on how to bring the Ridgeback up on ROS Noetic.
 
-#### TODO:
-- canbus in robot upstart
-- udev
-- ridgback service file
-- ifconfig output?
-
-
 # Networking
 These instructions show you how to setup the network using network manager.
 
-### IP Address
+## IP Address
 - Hokoyu front: 192.168.131.20
 - Hokoyu rear: 192.168.131.21
 - Velodyne lidar: 192.168.131.22
@@ -22,7 +15,7 @@ These instructions show you how to setup the network using network manager.
 - Ridgeback MCU: 192.168.131.2
 - Hostspot (Ridgeback hotspot): 10.42.0.1
 
-### Network Interfaces
+## Network Interfaces
 The Ridgeback has the following interfaces: `enp3s0`, `eno1`, and `wlp2s0`. The bridge network `br0`
 connect `enp3s0` and `eno1`. The Ridgeback's MCU is connected to `enp3s0`. There is a network switch that connects the Velodyne, both Hokoyus, and Sawyer to eno1. The wireless interface is `wlp2s0` which will allow you to connect you personal computer to the Ridgeback via the Hostspot.
 
@@ -56,7 +49,7 @@ enp3s0          ethernet  connected     bridge-slave-enp3s0
 
 ```
 
-### Wireless Hostpost
+## Wireless Hostpost
 The hotspot will allow you to connect your personal computer to the Ridgeback. The commands bellow will create a wireless hotspot using `wlp2s0` named Hostpost and password ridgeback.
 
 ```
@@ -80,8 +73,11 @@ wlp2s0          wifi      connected     Hostspot
 
 You will now be able to ssh into the Ridgeback and you should be able to ping all the IP address listed at the top.
 
-### Wireless Gamepad Controller
+## Wireless Gamepad Controller
 Use network manager to enable bluetooth and pair the gamepad.  
+
+## Can-bus
+To setup the CAN-bus see [robot_upstart](https://github.com/Crowdedlight/robot_upstart). This allows the Ridgeback's computer to communicate with the MCU.
 
 # Udev Rules
 Place the udev rules from `/udev` in `/etc/udev/rules.d`. To load and trigger the udev rules
@@ -152,7 +148,6 @@ To check the status:
 ```
 systemctl status ridgeback.service
 ```
-
 
 # Calibrate the Bumblebee Camera
 Requires [FlyCapture SDK](https://www.flir.com/products/flycapture-sdk/)
