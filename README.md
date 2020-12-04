@@ -3,9 +3,6 @@
 # Overview
 A custom repository for Northwestern University's Ridgeback. The Ridgeback is equipped with a Velodyne lidar, Bumblebee depth camera, 2 Hokoyu UST10LX lidars and a Sawyer manipulator.
 
-On startup the ridgeback will already be running `base.launch` and `laser_slam.launch` via
-the `ridgeback.service`.
-
 Ridgeback computer:
 ```
 username: administrator
