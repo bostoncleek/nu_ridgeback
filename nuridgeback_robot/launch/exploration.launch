@@ -8,7 +8,8 @@
 
   <group ns="ridgeback">
     <node machine="ridgeback" pkg="ergodic_exploration" type="exploration" name="exploration" output="screen">
-      <rosparam command="load" file="$(find nuridgeback_robot)/config/exploration/explore.yaml"/>
+      <rosparam if="$(arg use_mi)" command="load" file="$(find nuridgeback_robot)/config/exploration/explore_mi.yaml"/>
+      <rosparam unless="$(arg use_mi)" command="load" file="$(find nuridgeback_robot)/config/exploration/explore.yaml"/>
       <remap from="map"                      to="rtabmap/grid_map"/>
       <remap from="odom"                     to="ridgeback_velocity_controller/odom"/>
       <remap from="cmd_vel"                  to="ridgeback_velocity_controller/cmd_vel"/>

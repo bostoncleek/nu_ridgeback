@@ -3,6 +3,14 @@
     uri: https://github.com/bostoncleek/nu_ridgeback.git
     version: master
 - git:
+    local-name: ergodic_exploration
+    uri: https://github.com/bostoncleek/ergodic_exploration.git
+    version: master
+- git:
+    local-name: range_mi
+    uri: https://github.com/bostoncleek/range_mi.git
+    version: master
+- git:
     local-name: ridgeback
     uri: https://github.com/bostoncleek/ridgeback.git
     version: noetic-devel
