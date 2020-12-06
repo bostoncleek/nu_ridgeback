@@ -1,7 +1,7 @@
 # nuridgeback_description
 
 # Overview
-Contains the Ridgeback's URDF. If you are looking for the Sawback's urdf see the [sawback](https://github.com/bostoncleek/sawback) package.
+This package contains the Ridgeback's URDF. If you are looking for the Sawback's urdf see the [sawback](https://github.com/bostoncleek/sawback) package.
 
 <p align="center">
   <img src="media/ridgeback_urdf.jpg" width="350" height="400"/>

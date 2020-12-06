@@ -87,7 +87,7 @@ execute:
 udevadm control --reload-rules && udevadm trigger
 ```
 
-# Workspace
+# Workspace and Dependencies
 Currently there are three catkin workspaces chained together on the Ridgeback.
 The workspaces are `sawback_ws`, `ridgeback_ws`, and `rtabmap_ws`.
 
@@ -97,6 +97,14 @@ I recommend creating only the `ridgeback_ws`, and `rtabmap_ws` workspaces. Unles
 
 First create the `rtabmap_ws` workspace. Follow their [instructions](https://github.com/introlab/rtabmap_ros) on building the package.
 
+
+## Dependencies
+RTAB-MAP has additional dependencies that are not ROS Packages. I placed all third party packages in a directory outside the catkin workspaces. I recommend creating a `Libraries` directory and placing dependencies any ROS package needs to link against there.
+
+The Ridgeback exploration functionality depends on [armadillo](http://arma.sourceforge.net/
+). You will need to install this if you plan to use [ergodic_exploration](https://github.com/bostoncleek/ergodic_exploration).
+
+## Workspace
 
 To create the `ridgeback_ws`:
 ```
@@ -111,7 +119,7 @@ Extend the workspace
 ```
 cd ~/ridgeback_ws
 catkin init
-catkin config --extend=/home/administrator/ridgeback_ws/devel
+catkin config --extend=/home/administrator/rtabmap_ws/devel
 catkin build -DCMAKE_BUILD_TYPE=Release
 ```
 
