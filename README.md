@@ -30,3 +30,12 @@ To configure the Ridgeback from the ground up see [nuridgeback_bringup](https://
 - [nuridgeback_robot](https://github.com/bostoncleek/nu_ridgeback/tree/master/nuridgeback_robot): launch sensors, mobile base, navigation, exploration, localization, and mapping
 
 For manipulation see the [sawback](https://github.com/bostoncleek/sawback) package.
+
+# Demos
+
+To see the full pick and place action sequence see the video bellow.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iLyqu9EoNtY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HRo5VI21qYo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
