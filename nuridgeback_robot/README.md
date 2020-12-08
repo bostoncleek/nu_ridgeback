@@ -105,6 +105,12 @@ In order to launch `base.launch` and `laser_slam.launch` Sawyer's computer must 
 
 Once Sawyer has fully booted execute the following from the Ridgeback's computer:
 ```
+ssh administrator@192.168.131.1
+cd ~/sawback_ws
+source devel/setup.bash
+```
+
+```
 roslaunch nuridgeback_robot base.launch
 roslaunch nuridgeback_robot laser_slam.launch
 ```

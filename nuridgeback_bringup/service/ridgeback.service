@@ -3,7 +3,7 @@ Description=launch ridgeback base and sensors
 
 [Service]
 Type=simple
-ExecStart=/home/administrator/sawback_ws/src/nu_ridgeback/nuridgeback_robot/scripts/nuridgeback_startup
+ExecStart=/home/administrator/sawback_ws/src/nu_ridgeback/nuridgeback_bringup/scripts/nuridgeback_startup
 Restart=on-failure
 
 [Install]

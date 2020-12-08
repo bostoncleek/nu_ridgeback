@@ -1,7 +1,7 @@
 <launch>
   <group ns="ridgeback">
 
-    <arg name="ridgeback_urdf" default="false" doc="set to true to load the nu_ridgeback urdf"/>
+    <arg name="ridgeback_urdf" default="true" doc="set to true to load the nu_ridgeback urdf"/>
 
     <include file="$(find nuridgeback_robot)/launch/accessories.launch" />
 
