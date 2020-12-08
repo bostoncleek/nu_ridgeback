@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nuridgeback_bringup</name>
+  <version>0.0.1</version>
+  <description>NU ridgeback bringup</description>
+  <maintainer email="bostoncleek2020@u.northwestern.edu">bostoncleek</maintainer>
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+</package>
