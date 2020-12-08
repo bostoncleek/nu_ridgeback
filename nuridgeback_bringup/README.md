@@ -134,9 +134,6 @@ The expected output:
 ```
 
 # Service
-- IMPORTANT: The service can only start correctly if the Sawyer's computer has booted. Because of this reason I do not think it makes sense to use the `ridgeback.service`. Instead I found it easier
-to manually launch them.
-
 The `ridgeback.service` file in `/service` allows the Ridgeback to launch `base.launch` and
 `laser_slam.launch` on startup. This service executes the `nuridgeback_startup` script located in `/scripts`.
 

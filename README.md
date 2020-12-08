@@ -14,6 +14,8 @@
 # Overview
 A custom repository for Northwestern University's Ridgeback. The Ridgeback is equipped with a Velodyne lidar, Bumblebee depth camera, 2 Hokoyu UST10LX lidars and a Sawyer manipulator.
 
+On start up the Ridgeback will be running `base.launch` and `laser_slam.launch` from the `nuridgeback_robot` package. This will easily allow you to move the base by pressing the reset button on the back and pairing the PS4 gamepad.
+
 Ridgeback computer:
 ```
 username: administrator

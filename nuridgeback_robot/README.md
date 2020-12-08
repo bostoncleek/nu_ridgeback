@@ -3,10 +3,10 @@
 # Overview
 This package contains the launch files capable of launching sensors, mobile base, navigation, exploration, localization, and mapping on the Ridgeback.
 
-# Getting Started
 
+# Getting Started
 Steps 1 through 4 are executed on your personal computer.
-Step 5 must be executed on the Ridgeback's computer.
+Step 5 and 6 must be executed on the Ridgeback's computer.
 
 1. On your personal computer setup the environment.
 
@@ -74,15 +74,35 @@ Step 5 must be executed on the Ridgeback's computer.
   rosnode kill /base_to_world
   ```
 
-5. Enable the Ridgeback and Sawyer
+5. Stop the `ridgeback.service`
+  On boot the Ridgeback is running the `ridgeback.service` which starts `base.launch` and `laser_slam.launch`.
 
-  Make sure non of the E-stop buttons are engaged.
-  Press the button on the left rear side of the Ridgeback to reset it's E-stop.
-
-  ssh into the Ridgeback:
+  First, ssh into the Ridgeback:
   ```
   ssh administrator@192.168.131.1
   ```
+
+  To stop this service:
+  ```
+  systemctl stop ridgeback.service
+  ```
+
+  Then setup the environment by running:
+  ```
+  consawyer
+  ```
+
+  The `consawyer` function connects to sawyer by:
+  ```
+  export ROS_MASTER_URI='http://192.168.131.40:11311'
+  export ROS_IP='192.168.131.1'
+  unset ROS_HOSTNAME
+  ```
+
+6. Enable the Ridgeback and Sawyer
+
+  Make sure non of the E-stop buttons are engaged.
+  Press the button on the left rear side of the Ridgeback to reset it's E-stop.
 
   enable sawyer:
   ```
