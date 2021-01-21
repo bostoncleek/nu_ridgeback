@@ -111,7 +111,7 @@ To create the `ridgeback_ws`:
 mkdir -p ~/ridgeback_ws/src
 cd ~/ridgeback_ws/src
 wstool init .
-wstool merge -t . https://github.com/bostoncleek/nu_ridgeback/blob/master/nuridgeback.rosinstall
+wstool merge -t . https://raw.githubusercontent.com/bostoncleek/nu_ridgeback/master/nuridgeback.rosinstall
 wstool update -t .
 ```
 
