@@ -95,7 +95,7 @@ However, this is not necessary. The reason for the separate workspaces is as fol
 
 I recommend creating only the `ridgeback_ws`, and `rtabmap_ws` workspaces. Unless if you like to build your workspaces using `catkin_make` instead combine them into one.
 
-First create the `rtabmap_ws` workspace. Follow their [instructions](https://github.com/introlab/rtabmap_ros) on building the package.
+First create the `rtabmap_ws` workspace. Follow their [instructions](https://github.com/introlab/rtabmap_ros) on building the package from source. You need to install libpointmatcher before you build rtabmap.
 
 
 ## Dependencies
