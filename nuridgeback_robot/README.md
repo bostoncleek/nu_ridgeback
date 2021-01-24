@@ -108,7 +108,7 @@ Step 5 and 6 must be executed on the Ridgeback's computer.
   ```
   cd ~/sawback_ws
   source devel/setup.bash
-  rosrun inter_interface enable_robot.py -e
+  rosrun intera_interface enable_robot.py -e
   ```
 
 # Launch Files
